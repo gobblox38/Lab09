@@ -44,18 +44,23 @@ int main() {
         temp = line.substr(1, line.length());
 
         std::string::size_type sz;   // alias of size_t
-        bars[i].setPosition(Vector2f((i * 24), 0));
+        bars[i].setPosition(Vector2f((i * 26), 0));
 
         bars[i].setBarValue(stoi(temp, &sz));
         bars[i].setName(line.at(0));
     }
+     //end array set
+
+    Font font;
+    if (!font.loadFromFile("arial.ttf")) {
+        //error
+    }
 
 
-    //end array set
     /***** END OF FILE PROCESSING *****/
 
     // creates the window object with an 640x640 resolution window
-    RenderWindow window(VideoMode(640, 640), "SFML Template");
+    RenderWindow window(VideoMode(672, 640), "SFML Template");
 
     int maxBar = getMaxOf(bars);
     bars[maxBar].setFillColor(Color::Blue);
@@ -75,7 +80,9 @@ int main() {
             // change color here
             window.draw((RectangleShape)bar);
             // draw out the value with bars[i].getBarValue() or numArray[i]
-            
+            char letter = bar.getName();
+            Vector2f pos = bar.getPosition();
+
         }
         /***** END OF DRAWING	*****/
 
