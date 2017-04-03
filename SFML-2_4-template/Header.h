@@ -9,7 +9,16 @@ using namespace std;
 #include <SFML/Graphics.hpp>
 using namespace sf;
 
-#include "Bar.h"
+const int NUM_LETTERS = 26;
 
-const int X = 26; //this is used to set bar hight
-const int Z = 26;
+class Bar : public RectangleShape {
+private:
+    int bar_value;
+public:
+
+    Bar();
+
+    int getBarValue();
+    void setBarValue(int h);
+    const int BAR_WIDTH = 25;
+};

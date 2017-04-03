@@ -16,15 +16,15 @@ int main() {
     //begin A08 copy
     ifstream numOccur;
 
-    Bar *bars = (Bar*) malloc(sizeof(Bar)*Z);
+    Bar bars[NUM_LETTERS];
 
     char c = 'c';
     int i = 0;
     
-    int numArray[Z];
-    string letters[Z];
+    int numArray[NUM_LETTERS];
+    string letters[NUM_LETTERS];
 
-    for (i = 0; i < Z; ++i) {
+    for (i = 0; i < NUM_LETTERS; ++i) {
         numArray[i] = 0;
     }
 
@@ -35,7 +35,7 @@ int main() {
     }
     //end A08 copy
 
-    for (int i = 0; i < Z; i++)
+    for (int i = 0; i < NUM_LETTERS; i++)
     {
         
         string line, temp;
@@ -44,22 +44,17 @@ int main() {
         letters[i] = line.at(0);
         temp = line.substr(1, line.length());
 
-        std::string::size_type sz;   // alias of size_t
+        std::string::size_type sz;   // alias of siNUM_LETTERSe_t
         numArray[i] = stoi(temp, &sz);
     }
 
 
     //end array set
-
-    const int X = 26; //this is used to set bar hight
-    const int BAR_WIDTH = 24;
-    int bar_height = 100;
-
-
-    RectangleShape bar(Vector2f(BAR_WIDTH, bar_height);
-   
-    bar.setPosition(Vector2f((float)0, (float)540));
     /***** END OF FILE PROCESSING *****/
+
+    for (int i = 0; i < NUM_LETTERS; i++) {
+        bars[i].setPosition(Vector2f(25, 320));
+    }
 
     // creates the window object with an 640x640 resolution window
     RenderWindow window(VideoMode(640, 640), "SFML Template");
@@ -71,8 +66,13 @@ int main() {
         window.clear();
 
         /***** PLACE YOUR DRAWING CODE HERE *****/
-        window.draw(bar);
-        
+
+        for (int i = 0; i < NUM_LETTERS; i++) {
+            bars[i].setBarValue(numArray[i]);
+            window.draw((RectangleShape) bars[i]);
+            // draw out the value with bars[i].getBarValue() or numArray[i]
+            int value = bars[i].getBarValue();// or int value = numArray[i];
+        }
         /***** END OF DRAWING	*****/
 
         // Apply all the draws to the screen

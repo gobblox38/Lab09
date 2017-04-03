@@ -130,7 +130,6 @@
     <Font Include="data\arial.ttf" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Bar.h" />
     <ClInclude Include="Header.h" />
   </ItemGroup>
   <ItemGroup>

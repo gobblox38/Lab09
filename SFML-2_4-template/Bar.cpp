@@ -1,15 +1,16 @@
 
-#include "Bar.h"
+#include "Header.h"
 
 
 Bar::Bar() {
-    bar_height = 0;
+    bar_value = 0;
 }
 
-int Bar::getBarHeight() {
-    return bar_height;
+int Bar::getBarValue() {
+    return bar_value;
 }
 
-void Bar::setBarHeight(int h) {
-    bar_height = h;
+void Bar::setBarValue(int h) {
+    bar_value = h;
+    setSize(Vector2f(BAR_WIDTH, bar_value));
 }
