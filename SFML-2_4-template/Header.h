@@ -20,5 +20,5 @@ public:
 
     int getBarValue();
     void setBarValue(int h);
-    const int BAR_WIDTH = 25;
+    const int BAR_WIDTH = 24;
 };

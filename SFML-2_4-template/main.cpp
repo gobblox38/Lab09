@@ -53,7 +53,7 @@ int main() {
     /***** END OF FILE PROCESSING *****/
 
     for (int i = 0; i < NUM_LETTERS; i++) {
-        bars[i].setPosition(Vector2f(25, 320));
+        bars[i].setPosition(Vector2f((i * 24), 0));
     }
 
     // creates the window object with an 640x640 resolution window
