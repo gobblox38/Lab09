@@ -8,7 +8,18 @@
 
 #include "Header.h"
 
+int getMaxOf(Bar bars[]) {
+    double maxOccur = 0;
+    double maxOccurAt = 0;
 
+    for (int i = 0; i < NUM_LETTERS; ++i) {
+        if (maxOccur < bars[i].getBarValue()) {
+            maxOccur = bars[i].getBarValue();
+            maxOccurAt = i;
+        }
+    }
+    return maxOccurAt;
+}
 
 int main() {
 
@@ -17,16 +28,6 @@ int main() {
     ifstream numOccur;
 
     Bar bars[NUM_LETTERS];
-
-    char c = 'c';
-    int i = 0;
-    
-    int numArray[NUM_LETTERS];
-    string letters[NUM_LETTERS];
-
-    for (i = 0; i < NUM_LETTERS; ++i) {
-        numArray[i] = 0;
-    }
 
     numOccur.open("numOccur.txt");
     if (!numOccur.is_open()) {
@@ -40,24 +41,24 @@ int main() {
         
         string line, temp;
         getline(numOccur, line);
-
-        letters[i] = line.at(0);
         temp = line.substr(1, line.length());
 
-        std::string::size_type sz;   // alias of siNUM_LETTERSe_t
-        numArray[i] = stoi(temp, &sz);
+        std::string::size_type sz;   // alias of size_t
+        bars[i].setPosition(Vector2f((i * 24), 0));
+
+        bars[i].setBarValue(stoi(temp, &sz));
+        bars[i].setName(line.at(0));
     }
 
 
     //end array set
     /***** END OF FILE PROCESSING *****/
 
-    for (int i = 0; i < NUM_LETTERS; i++) {
-        bars[i].setPosition(Vector2f((i * 24), 0));
-    }
-
     // creates the window object with an 640x640 resolution window
     RenderWindow window(VideoMode(640, 640), "SFML Template");
+
+    int maxBar = getMaxOf(bars);
+    bars[maxBar].setFillColor(Color::Blue);
 
     // Draw loop: Each iteration of this loop draws a single frame
     while (window.isOpen()) {
@@ -68,10 +69,13 @@ int main() {
         /***** PLACE YOUR DRAWING CODE HERE *****/
 
         for (int i = 0; i < NUM_LETTERS; i++) {
-            bars[i].setBarValue(numArray[i]);
-            window.draw((RectangleShape) bars[i]);
+            Bar bar = bars[i];
+            int value = bar.getBarValue();
+
+            // change color here
+            window.draw((RectangleShape)bar);
             // draw out the value with bars[i].getBarValue() or numArray[i]
-            int value = bars[i].getBarValue();// or int value = numArray[i];
+            
         }
         /***** END OF DRAWING	*****/
 
